@@ -2,7 +2,6 @@ import { fetchWeather } from './api/weather.js';
 import { WeatherCard } from './components/WeatherCard.js';
 import { SearchController } from './components/SearchController.js';
 import { getFontAwesomeIcon } from './utils/iconMap.js';
-// Add Firebase imports
 import { onAuthStateChanged } from 'firebase/auth';
 import { collection, addDoc, query, where, getDocs, deleteDoc } from 'firebase/firestore';
 import { auth, db } from './firebase/config.js';
@@ -12,7 +11,7 @@ class App {
         this.state = {
             weather: null,
             theme: localStorage.getItem('theme') || 'dark',
-            currentUser: null // Track logged in user
+            currentUser: null
         };
         
         this.init();

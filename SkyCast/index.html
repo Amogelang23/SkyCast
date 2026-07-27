@@ -21,6 +21,17 @@
     <link rel="stylesheet" href="/src/css/components.css">
     <link rel="stylesheet" href="/src/css/widgets.css">
     <link rel="stylesheet" href="/src/css/animations.css">
+
+    <script type="importmap">
+        {
+            "imports": {
+            "firebase/app": "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js",
+            "firebase/auth": "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js",
+            "firebase/firestore": "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"
+            }
+        }
+</script>
+
 </head>
 <body class="app-layout">
     <div id="weather-bg-layer" aria-hidden="true" data-weather="clear-day"></div>
