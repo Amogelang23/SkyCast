@@ -69,25 +69,24 @@
     will-change: transform, opacity; 
 }
 
-.stagger-1 { 
-    animation-delay: 0.1s; 
-    opacity: 0; 
-    animation-fill-mode: forwards; 
+/* FIX: Added the animation property to the stagger classes so they actually trigger */
+.stagger-1, 
+.stagger-2, 
+.stagger-3 {
+    opacity: 0;
+    animation: slide-fade-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    will-change: transform, opacity;
 }
-.stagger-2 { 
-    animation-delay: 0.2s; 
-    opacity: 0; 
-    animation-fill-mode: forwards; 
-}
-.stagger-3 { 
-    animation-delay: 0.3s; 
-    opacity: 0; 
-    animation-fill-mode: forwards; 
-}
+
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
 
 .widget-grid > .widget {
     animation: slide-fade-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
     opacity: 0;
+    /* Optional: add a slight delay to widgets so they load after the top bar */
+    animation-delay: 0.4s; 
 }
 
 /* --- Background Animation Layer --- */
@@ -134,13 +133,7 @@
 
 /* The breathing animation makes the gradients slowly drift */
 @keyframes atmospheric-shift {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }

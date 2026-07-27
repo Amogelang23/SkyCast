@@ -147,3 +147,59 @@
 .loc-region {
     font-size: 0.85rem;
 }
+
+.weather-hero-icon {
+    font-size: 4rem; 
+    color: var(--text-main);
+    margin-right: var(--space-md);
+    
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+.hourly-item i {
+    font-size: 1.5rem;
+    margin: 8px 0;
+    color: var(--text-main);
+}
+
+.btn-icon {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-smooth);
+    flex-shrink: 0;
+}
+
+.btn-icon:hover, 
+.btn-icon:focus-visible {
+    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.1); 
+    outline: none;
+    transform: scale(1.05);
+}
+
+.btn-icon:active {
+    transform: scale(0.95);
+}
+
+
+#btn-dashboard-favorite {
+    margin-top: -4px; 
+}
+
+#btn-dashboard-favorite i.fa-solid {
+    filter: drop-shadow(0 0 8px rgba(244, 63, 94, 0.4));
+}
+
+.btn-icon.danger:hover,
+.btn-icon.danger:focus-visible {
+    color: #f87171 !important;
+    background: rgba(248, 113, 113, 0.15);
+}

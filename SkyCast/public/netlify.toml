@@ -1,0 +1,32 @@
+[build]
+  # Assuming your index.html is in the root. 
+  # If you move everything to a 'dist' or 'public' folder later, change this to publish = "dist"
+  publish = "."
+
+# 1. PWA Service Worker (NEVER CACHE THIS)
+# If this caches, users will be stuck on old versions of your app forever.
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+
+# 2. PWA Manifest (Always fetch latest)
+[[headers]]
+  for = "/public/manifest.json"
+  [headers.values]
+    Cache-Control = "no-cache, must-revalidate"
+
+# 3. App Shell (HTML files - validate with server)
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# 4. Global Security Headers for all other assets
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Aero | Authenticate</title>
+    <title>Welcome to SkyCast | Authenticate</title>
     <link rel="stylesheet" href="/src/css/variables.css">
     <link rel="stylesheet" href="/src/css/base.css">
     <link rel="stylesheet" href="/src/css/components.css">
     <link rel="stylesheet" href="/src/css/auth.css">
     <link rel="stylesheet" href="/src/css/animations.css">
+
+    <link rel="canonical" href="https://skycast23.netlify.app/auth.html">
+
 </head>
 <body class="auth-layout">
     <!-- Animated atmospheric background -->
@@ -20,7 +23,7 @@
             
             <div class="auth-header">
                 <div class="brand-logo">
-                    <svg aria-hidden="true" width="40" height="40"><!-- Logo SVG --></svg>
+                    <svg aria-hidden="true" width="40" height="40"></svg>
                 </div>
                 <h1 id="auth-title">Welcome Back</h1>
                 <p class="text-muted" id="auth-subtitle">Sign in to sync your weather insights.</p>
@@ -97,5 +100,14 @@
 
         </div>
     </main>
+
+    <script type="module">
+        import { AuthController } from '/src/js/components/AuthController.js';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            window.authApp = new AuthController();
+        });
+    </script>
+
 </body>
 </html>

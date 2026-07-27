@@ -1,67 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <title>User Profile | SkyCast</title>
+    
+    <!-- PWA Requirements -->
+    <link rel="manifest" href="/public/manifest.json">
+    <meta name="theme-color" content="#0f172a">
+
+    <!-- Font Awesome CDN for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <link rel="stylesheet" href="/src/css/variables.css">
     <link rel="stylesheet" href="/src/css/base.css">
     <link rel="stylesheet" href="/src/css/components.css">
     <link rel="stylesheet" href="/src/css/animations.css">
+
 </head>
+<body class="app-layout">
+    <div id="weather-bg-layer" aria-hidden="true" data-weather="clear-day"></div>
 
-<main class="profile-container padding-lg">
-    <header class="page-header">
-        <h1>Preferences</h1>
-    </header>
+    <nav class="sidebar glass-panel" aria-label="Main Navigation">
+        <div class="brand">
+            <i class="fa-solid fa-meteor fa-2x"></i>
+            <span>SkyCast</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+            <li><a href="/locations.html"><i class="fa-solid fa-map-location-dot"></i> Locations</a></li>
+            <li><a href="/profile.html" class="active" aria-current="page"><i class="fa-solid fa-user"></i> Profile</a></li>
+        </ul>
+        <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">
+            <i class="fa-solid fa-circle-half-stroke"></i>
+        </button>
+    </nav>
 
-    <div class="settings-grid">
-        <!-- Profile Section -->
-        <section class="settings-group glass-panel">
-            <h2>Account</h2>
-            <div class="profile-header">
-                <div class="avatar-upload">
-                    <img src="/public/assets/default-avatar.png" alt="Profile" id="user-avatar" class="avatar-img">
-                    <button class="btn-upload" aria-label="Upload new picture"><span class="icon-camera"></span></button>
+    <!-- Main Content -->
+    <main class="profile-container padding-lg page-enter" id="main-content">
+        <header class="page-header stagger-1">
+            <h1>Preferences</h1>
+        </header>
+
+        <div class="settings-grid stagger-2">
+            
+            <section class="settings-group glass-panel">
+                <h2 style="margin-bottom: 1.5rem;"><i class="fa-solid fa-id-badge" style="margin-right: 8px;"></i> Account</h2>
+                <div class="profile-header">
+                    <div class="avatar-upload">
+                        <div class="avatar-img" style="display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.1); font-size: 2rem;">
+                            <i class="fa-solid fa-user text-muted"></i>
+                        </div>
+                        <button class="btn-upload" aria-label="Upload new picture">
+                            <i class="fa-solid fa-camera"></i>
+                        </button>
+                    </div>
+                    <div class="input-group" style="flex: 1;">
+                        <label for="display-name">Display Name</label>
+                        <input type="text" id="display-name" class="glass-input" value="Sky Watcher" style="margin-top: 8px;">
+                    </div>
                 </div>
                 <div class="input-group">
-                    <label for="display-name">Display Name</label>
-                    <input type="text" id="display-name" class="glass-input" value="Sky Watcher">
+                    <label for="email-address">Email Address</label>
+                    <input type="email" id="email-address" class="glass-input" value="user@example.com" disabled style="margin-top: 8px; opacity: 0.7; cursor: not-allowed;">
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Preferences Section -->
-        <section class="settings-group glass-panel">
-            <h2>App Settings</h2>
+            <section class="settings-group glass-panel">
+                <h2 style="margin-bottom: 1rem;"><i class="fa-solid fa-sliders" style="margin-right: 8px;"></i> App Settings</h2>
+                
+                <div class="setting-row">
+                    <div class="setting-info">
+                        <h3 style="font-size: 1.1rem;">Temperature Unit</h3>
+                        <p class="text-muted" style="font-size: 0.9rem; margin-top: 4px;">Choose Celsius or Fahrenheit</p>
+                    </div>
+                    <div class="glass-toggle-group">
+                        <input type="radio" name="units" id="unit-c" value="metric" checked>
+                        <label for="unit-c">&deg;C</label>
+                        <input type="radio" name="units" id="unit-f" value="imperial">
+                        <label for="unit-f">&deg;F</label>
+                    </div>
+                </div>
+
+                <hr class="glass-divider">
+
+                <div class="setting-row">
+                    <div class="setting-info">
+                        <h3 style="font-size: 1.1rem;">Dark Mode</h3>
+                        <p class="text-muted" style="font-size: 0.9rem; margin-top: 4px;">Adjust the visual theme</p>
+                    </div>
+                    <label class="switch" style="position: relative; display: inline-block; width: 50px; height: 26px;">
+                        <input type="checkbox" id="theme-switch" checked style="opacity: 0; width: 0; height: 0;">
+                        <span class="slider round" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(255,255,255,0.2); transition: .4s; border-radius: 34px;">
+                            <span class="slider-dot" style="position: absolute; content: ''; height: 18px; width: 18px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; transform: translateX(24px);"></span>
+                        </span>
+                    </label>
+                </div>
+                
+                <hr class="glass-divider">
+
+                <div class="setting-row">
+                    <div class="setting-info">
+                        <h3 style="font-size: 1.1rem;">Default Location</h3>
+                        <p class="text-muted" style="font-size: 0.9rem; margin-top: 4px;">Your home city on load</p>
+                    </div>
+                    <div class="input-group" style="width: 50%;">
+                        <input type="text" id="default-city" class="glass-input" value="London">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Danger Zone -->
+            <section class="settings-group glass-panel" style="border-color: rgba(248, 113, 113, 0.3);">
+                <h2 style="color: #f87171; margin-bottom: 1rem;"><i class="fa-solid fa-triangle-exclamation" style="margin-right: 8px;"></i> Danger Zone</h2>
+                <div style="display: flex; flex-direction: column; gap: 12px; align-items: flex-start;">
+                    <button class="btn-primary" id="btn-logout" style="background: transparent; border: 1px solid var(--glass-border); color: var(--text-main);">
+                        <i class="fa-solid fa-right-from-bracket" style="margin-right: 8px;"></i> Sign Out
+                    </button>
+                    <button class="btn-text" id="btn-delete-account" style="color: #f87171; font-weight: 500;">
+                        Delete Account
+                    </button>
+                </div>
+            </section>
             
-            <div class="setting-row">
-                <div class="setting-info">
-                    <h3>Temperature Unit</h3>
-                    <p class="text-muted">Choose Celsius or Fahrenheit</p>
-                </div>
-                <div class="glass-toggle-group">
-                    <input type="radio" name="units" id="unit-c" value="metric" checked>
-                    <label for="unit-c">&deg;C</label>
-                    <input type="radio" name="units" id="unit-f" value="imperial">
-                    <label for="unit-f">&deg;F</label>
-                </div>
-            </div>
+        </div>
+    </main>
 
-            <hr class="glass-divider">
-
-            <div class="setting-row">
-                <div class="setting-info">
-                    <h3>Dark Mode</h3>
-                    <p class="text-muted">Adjust the visual theme</p>
-                </div>
-                <label class="switch">
-                    <input type="checkbox" id="theme-switch" checked>
-                    <span class="slider round"></span>
-                </label>
-            </div>
-        </section>
-
-        <!-- Danger Zone -->
-        <section class="settings-group glass-panel danger-zone">
-            <h2>Danger Zone</h2>
-            <button class="btn-outline-danger" id="btn-logout">Sign Out</button>
-            <button class="btn-text-danger mt-sm" id="btn-delete-account">Delete Account</button>
-        </section>
-    </div>
-</main>
+    <script type="module">
+        import { ProfileController } from '/src/js/components/ProfileController.js';
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            window.profileApp = new ProfileController();
+        });
+    </script>
+</body>
+</html>

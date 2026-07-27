@@ -1,154 +1,136 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" viewport-fit="cover">
-
-    <!--SEO and Open Graph-->
-    <title>SkyCast Dashboard</title>
-
-    <meta name="description" content="SkyCast Dashboard - A comprehensive dashboard for monitoring and managing your SkyCast services.">
-    <meta property="og:title" content="SkyCast Dashboard">
-    <meta property="og:description" content="SkyCast Dashboard - A comprehensive dashboard for monitoring and managing your SkyCast services.">
-    <meta property="type" content="website">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     
-    <!--PWA-->
+    <title>SkyCast | Premium Weather Intelligence</title>
+    <meta name="description" content="Hyper-local weather forecasts, interactive radar, and atmospheric insights in a beautiful, customizable dashboard.">
+    
     <link rel="manifest" href="/public/manifest.json">
     <meta name="theme-color" content="#0f172a">
-    <link rel="apple-touch-icon" href="/public/assets/icon-192.png">
 
-    <!--styles-->
+    <!-- Font Awesome CDN for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="canonical" href="https://skycast23.netlify.app/">
+
+    <!-- Styles -->
     <link rel="stylesheet" href="/src/css/variables.css">
     <link rel="stylesheet" href="/src/css/base.css">
     <link rel="stylesheet" href="/src/css/components.css">
     <link rel="stylesheet" href="/src/css/widgets.css">
     <link rel="stylesheet" href="/src/css/animations.css">
-
-    <!--Awsome icons-->
-    <link rel="stylesheet" href="https://cloudflare.com">
 </head>
 <body class="app-layout">
-    <!--app background-->
-    <div id="weather-bg-layer" aria-hidden="true"></div>
+    <div id="weather-bg-layer" aria-hidden="true" data-weather="clear-day"></div>
 
+    <!-- Sidebar Navigation -->
     <nav class="sidebar glass-panel" aria-label="Main Navigation">
         <div class="brand">
-            <svg aria-hidden="true" width="32" height="32"></svg>
+            <i class="fa-solid fa-meteor fa-2x"></i>
             <span>SkyCast</span>
         </div>
         <ul class="nav-links">
-            <li><a href="/" class="active" aria-current="page">Dashboard</a></li>
-            <li><a href="/locations.html">Locations</a></li>
-            <li><a href="/profile.html">Profile</a></li>
+            <li><a href="/" class="active" aria-current="page"><i class="fa-solid fa-house"></i> Dashboard</a></li>
+            <li><a href="/locations.html"><i class="fa-solid fa-map-location-dot"></i> Locations</a></li>
+            <li><a href="/profile.html"><i class="fa-solid fa-user"></i> Profile</a></li>
         </ul>
         <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">
-            <i class="fa-solid fa-sun"></i>
+            <i class="fa-solid fa-circle-half-stroke"></i>
         </button>
     </nav>
 
-    <main class="dashboard-grid" id="main-content">
-        <header class="top-bar">
+    <main class="dashboard-grid page-enter" id="main-content">
+        
+        <header class="top-bar stagger-1">
             <div class="search-container glass-panel">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
                 <input type="search" id="location-search" placeholder="Search cities..." aria-label="Search location">
                 <div id="search-results" class="glass-dropdown hidden" role="listbox"></div>
             </div>
-            <div class="user-menu" id="user-profile-widget"></div>
+            <div class="user-menu" id="user-profile-widget">
+            </div>
         </header>
 
-        <!--main weather widget-->
-        <section class="hero-weather glass-panel is-loading" id="current-weather">
+        <section class="hero-weather glass-panel stagger-2" id="current-weather" aria-live="polite">
             <div class="skeleton-text title"></div>
             <div class="skeleton-text short"></div>
             <div class="skeleton-box mt-md"></div>
         </section>
 
-        <!--modular widgets-->
-        <div class="widgets-grid">
-            <!-- HOURLY FORECAST WIDGET -->
-<section class="widget glass-panel">
-    <div class="widget-header">
-        <h2 class="widget-title"><span class="icon-clock" aria-hidden="true"></span> Today</h2>
-    </div>
-    
-    <!-- Horizontal Snap Scroll Container -->
-    <div class="hourly-scroll-container" tabindex="0">
-        <div class="hourly-item active">
-            <span class="time">Now</span>
-            <img src="/public/assets/icons/cloudy.svg" alt="Cloudy" class="weather-icon-sm">
-            <span class="temp">18&deg;</span>
-        </div>
-        <div class="hourly-item">
-            <span class="time">14:00</span>
-            <img src="/public/assets/icons/rain.svg" alt="Rain" class="weather-icon-sm">
-            <span class="temp">17&deg;</span>
-            <span class="rain-chance">40%</span>
-        </div>
-        <div class="hourly-item">
-            <span class="time">15:00</span>
-            <img src="/public/assets/icons/sun.svg" alt="Sunny" class="weather-icon-sm">
-            <span class="temp">19&deg;</span>
-        </div>
-        <div class="hourly-item">
-            <span class="time">16:00</span>
-            <img src="/public/assets/icons/sun.svg" alt="Sunny" class="weather-icon-sm">
-            <span class="temp">18&deg;</span>
-        </div>
-        <div class="hourly-item">
-            <span class="time">17:00</span>
-            <img src="/public/assets/icons/moon.svg" alt="Clear night" class="weather-icon-sm">
-            <span class="temp">15&deg;</span>
-        </div>
-    </div>
-</section>
+        <!-- Modular Widgets Grid -->
+        <div class="widget-grid stagger-3">
+            
+            <!-- Hourly Forecast Widget -->
+            <section class="widget glass-panel">
+                <div class="widget-header">
+                    <h2 class="widget-title"><i class="fa-solid fa-clock"></i> Today</h2>
+                </div>
+                <div class="hourly-scroll-container" tabindex="0" id="hourly-forecast-container">
+                    <!-- Example Hardcoded Items (JS will replace these) -->
+                    <div class="hourly-item active">
+                        <span class="time">Now</span>
+                        <i class="fa-solid fa-cloud-sun"></i>
+                        <span class="temp">18&deg;</span>
+                    </div>
+                    <div class="hourly-item">
+                        <span class="time">14:00</span>
+                        <i class="fa-solid fa-cloud-showers-heavy"></i>
+                        <span class="temp">17&deg;</span>
+                        <span class="rain-chance">40%</span>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Air Quality Widget -->
+            <section class="widget glass-panel">
+                <div class="widget-header">
+                    <h2 class="widget-title"><i class="fa-solid fa-leaf"></i> Air Quality</h2>
+                </div>
+                <div class="aqi-container">
+                    <svg class="aqi-ring" viewBox="0 0 100 100">
+                        <circle class="ring-bg" cx="50" cy="50" r="40"></circle>
+                        <circle class="ring-progress aqi-good" cx="50" cy="50" r="40" stroke-dasharray="251.2" stroke-dashoffset="62.8"></circle>
+                    </svg>
+                    <div class="aqi-info">
+                        <span class="aqi-value" id="aqi-val">45</span>
+                        <span class="aqi-status" id="aqi-status-text">Good</span>
+                    </div>
+                </div>
+                <p class="widget-footer text-muted" id="aqi-msg">Air quality is optimal.</p>
+            </section>
+            
+            <!-- UV Index Widget -->
+            <section class="widget glass-panel">
+                <div class="widget-header">
+                    <h2 class="widget-title"><i class="fa-solid fa-sun"></i> UV Index</h2>
+                </div>
+                <div class="uv-container">
+                    <div class="uv-header">
+                        <span class="uv-value text-step-2" id="uv-val">4</span>
+                        <span class="uv-status" id="uv-status-text">Moderate</span>
+                    </div>
+                    <div class="uv-track" aria-label="UV Index Meter">
+                        <div class="uv-indicator" id="uv-indicator" style="left: 36%;"></div>
+                    </div>
+                </div>
+                <p class="widget-footer text-muted" id="uv-msg">Sun protection recommended.</p>
+            </section>
 
-<!-- AIR QUALITY WIDGET (SVG Ring) -->
-<section class="widget glass-panel">
-    <div class="widget-header">
-        <h2 class="widget-title"><span class="icon-leaf" aria-hidden="true"></span> Air Quality</h2>
-    </div>
-    
-    <div class="aqi-container">
-        <!-- Circular Progress SVG -->
-        <svg class="aqi-ring" viewBox="0 0 100 100">
-            <!-- Background Track -->
-            <circle class="ring-bg" cx="50" cy="50" r="40"></circle>
-            <!-- Progress Track: Circumference is ~251.2. 
-                 stroke-dashoffset = circumference - (percent / 100 * circumference) -->
-            <circle class="ring-progress aqi-good" cx="50" cy="50" r="40" 
-                    stroke-dasharray="251.2" stroke-dashoffset="62.8"></circle>
-        </svg>
-        
-        <!-- Centered Info -->
-        <div class="aqi-info">
-            <span class="aqi-value">45</span>
-            <span class="aqi-status">Good</span>
-        </div>
-    </div>
-    <p class="widget-footer text-muted">Air quality is optimal.</p>
-</section>
-
-<!-- UV INDEX WIDGET (Gradient Track) -->
-<section class="widget glass-panel">
-    <div class="widget-header">
-        <h2 class="widget-title"><span class="icon-sun" aria-hidden="true"></span> UV Index</h2>
-    </div>
-    
-    <div class="uv-container">
-        <div class="uv-header">
-            <span class="uv-value text-step-2">4</span>
-            <span class="uv-status">Moderate</span>
-        </div>
-        
-        <!-- Custom Gradient Meter -->
-        <div class="uv-track" aria-label="UV Index Meter 4 out of 11">
-            <div class="uv-indicator" style="left: 36%;"></div>
-        </div>
-    </div>
-    <p class="widget-footer text-muted">Sun protection recommended until 16:00.</p>
-</section>
         </div>
     </main>
 
+    <!-- Main App Script -->
     <script type="module" src="/src/js/app.js"></script>
     
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW setup failed', err));
+            });
+        }
+    </script>
 </body>
 </html>

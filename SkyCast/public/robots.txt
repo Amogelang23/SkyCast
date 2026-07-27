@@ -1,0 +1,19 @@
+# /public/robots.txt
+
+User-agent: *
+
+# Allow crawling of the main dashboard and auth pages
+Allow: /
+Allow: /index.html
+Allow: /auth.html
+
+# Prevent crawlers from indexing private, authenticated routes
+Disallow: /profile.html
+Disallow: /locations.html
+
+# Prevent crawlers from trying to index raw source files and assets
+Disallow: /src/
+Disallow: /public/assets/
+
+# Point crawlers to your sitemap
+Sitemap: https://yourdomain.com/sitemap.xml

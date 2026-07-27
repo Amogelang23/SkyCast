@@ -66,3 +66,53 @@ grid-template-columns: 1fr;
 padding: var(--space-md);
 }
 }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-lg);
+            margin-bottom: var(--space-lg);
+        }
+        .avatar-upload {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--glass-border);
+        }
+        .btn-upload {
+            position: absolute;
+            bottom: -5px;
+            right: -5px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            transition: var(--transition-smooth);
+        }
+        .btn-upload:hover {
+            transform: scale(1.1);
+            background: #2563eb;
+        }
+        .setting-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-md) 0;
+        }
+        .settings-group {
+            margin-bottom: var(--space-lg);
+            padding: var(--space-lg);
+        }
