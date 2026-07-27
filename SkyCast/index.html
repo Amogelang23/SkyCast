@@ -1,0 +1,154 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" viewport-fit="cover">
+
+    <!--SEO and Open Graph-->
+    <title>SkyCast Dashboard</title>
+
+    <meta name="description" content="SkyCast Dashboard - A comprehensive dashboard for monitoring and managing your SkyCast services.">
+    <meta property="og:title" content="SkyCast Dashboard">
+    <meta property="og:description" content="SkyCast Dashboard - A comprehensive dashboard for monitoring and managing your SkyCast services.">
+    <meta property="type" content="website">
+    
+    <!--PWA-->
+    <link rel="manifest" href="/public/manifest.json">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="apple-touch-icon" href="/public/assets/icon-192.png">
+
+    <!--styles-->
+    <link rel="stylesheet" href="/src/css/variables.css">
+    <link rel="stylesheet" href="/src/css/base.css">
+    <link rel="stylesheet" href="/src/css/components.css">
+    <link rel="stylesheet" href="/src/css/widgets.css">
+    <link rel="stylesheet" href="/src/css/animations.css">
+
+    <!--Awsome icons-->
+    <link rel="stylesheet" href="https://cloudflare.com">
+</head>
+<body class="app-layout">
+    <!--app background-->
+    <div id="weather-bg-layer" aria-hidden="true"></div>
+
+    <nav class="sidebar glass-panel" aria-label="Main Navigation">
+        <div class="brand">
+            <svg aria-hidden="true" width="32" height="32"></svg>
+            <span>SkyCast</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/" class="active" aria-current="page">Dashboard</a></li>
+            <li><a href="/locations.html">Locations</a></li>
+            <li><a href="/profile.html">Profile</a></li>
+        </ul>
+        <button id="theme-toggle" aria-label="Toggle Dark/Light Mode">
+            <i class="fa-solid fa-sun"></i>
+        </button>
+    </nav>
+
+    <main class="dashboard-grid" id="main-content">
+        <header class="top-bar">
+            <div class="search-container glass-panel">
+                <input type="search" id="location-search" placeholder="Search cities..." aria-label="Search location">
+                <div id="search-results" class="glass-dropdown hidden" role="listbox"></div>
+            </div>
+            <div class="user-menu" id="user-profile-widget"></div>
+        </header>
+
+        <!--main weather widget-->
+        <section class="hero-weather glass-panel is-loading" id="current-weather">
+            <div class="skeleton-text title"></div>
+            <div class="skeleton-text short"></div>
+            <div class="skeleton-box mt-md"></div>
+        </section>
+
+        <!--modular widgets-->
+        <div class="widgets-grid">
+            <!-- HOURLY FORECAST WIDGET -->
+<section class="widget glass-panel">
+    <div class="widget-header">
+        <h2 class="widget-title"><span class="icon-clock" aria-hidden="true"></span> Today</h2>
+    </div>
+    
+    <!-- Horizontal Snap Scroll Container -->
+    <div class="hourly-scroll-container" tabindex="0">
+        <div class="hourly-item active">
+            <span class="time">Now</span>
+            <img src="/public/assets/icons/cloudy.svg" alt="Cloudy" class="weather-icon-sm">
+            <span class="temp">18&deg;</span>
+        </div>
+        <div class="hourly-item">
+            <span class="time">14:00</span>
+            <img src="/public/assets/icons/rain.svg" alt="Rain" class="weather-icon-sm">
+            <span class="temp">17&deg;</span>
+            <span class="rain-chance">40%</span>
+        </div>
+        <div class="hourly-item">
+            <span class="time">15:00</span>
+            <img src="/public/assets/icons/sun.svg" alt="Sunny" class="weather-icon-sm">
+            <span class="temp">19&deg;</span>
+        </div>
+        <div class="hourly-item">
+            <span class="time">16:00</span>
+            <img src="/public/assets/icons/sun.svg" alt="Sunny" class="weather-icon-sm">
+            <span class="temp">18&deg;</span>
+        </div>
+        <div class="hourly-item">
+            <span class="time">17:00</span>
+            <img src="/public/assets/icons/moon.svg" alt="Clear night" class="weather-icon-sm">
+            <span class="temp">15&deg;</span>
+        </div>
+    </div>
+</section>
+
+<!-- AIR QUALITY WIDGET (SVG Ring) -->
+<section class="widget glass-panel">
+    <div class="widget-header">
+        <h2 class="widget-title"><span class="icon-leaf" aria-hidden="true"></span> Air Quality</h2>
+    </div>
+    
+    <div class="aqi-container">
+        <!-- Circular Progress SVG -->
+        <svg class="aqi-ring" viewBox="0 0 100 100">
+            <!-- Background Track -->
+            <circle class="ring-bg" cx="50" cy="50" r="40"></circle>
+            <!-- Progress Track: Circumference is ~251.2. 
+                 stroke-dashoffset = circumference - (percent / 100 * circumference) -->
+            <circle class="ring-progress aqi-good" cx="50" cy="50" r="40" 
+                    stroke-dasharray="251.2" stroke-dashoffset="62.8"></circle>
+        </svg>
+        
+        <!-- Centered Info -->
+        <div class="aqi-info">
+            <span class="aqi-value">45</span>
+            <span class="aqi-status">Good</span>
+        </div>
+    </div>
+    <p class="widget-footer text-muted">Air quality is optimal.</p>
+</section>
+
+<!-- UV INDEX WIDGET (Gradient Track) -->
+<section class="widget glass-panel">
+    <div class="widget-header">
+        <h2 class="widget-title"><span class="icon-sun" aria-hidden="true"></span> UV Index</h2>
+    </div>
+    
+    <div class="uv-container">
+        <div class="uv-header">
+            <span class="uv-value text-step-2">4</span>
+            <span class="uv-status">Moderate</span>
+        </div>
+        
+        <!-- Custom Gradient Meter -->
+        <div class="uv-track" aria-label="UV Index Meter 4 out of 11">
+            <div class="uv-indicator" style="left: 36%;"></div>
+        </div>
+    </div>
+    <p class="widget-footer text-muted">Sun protection recommended until 16:00.</p>
+</section>
+        </div>
+    </main>
+
+    <script type="module" src="/src/js/app.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,68 @@
+/* /src/css/variables.css */
+:root {
+/* Fluid Typography (scales with screen size) */
+--step-0: clamp(1.00rem, 0.96rem + 0.22vw, 1.13rem);
+--step-1: clamp(1.20rem, 1.12rem + 0.43vw, 1.44rem);
+--step-2: clamp(1.44rem, 1.29rem + 0.77vw, 1.87rem);
+
+/* Spacing System */
+--space-sm: 0.5rem;
+--space-md: 1rem;
+--space-lg: 1.5rem;
+--border-radius: 20px;
+--transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Dark Theme (Default) */
+[data-theme="dark"] {
+    --bg-base: #0f172a;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+
+    /* Premium Glassmorphism Variables */
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --glass-blur: blur(16px);
+}
+/* Light Theme */
+[data-theme="light"] {
+    --bg-base: #f1f5f9;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --glass-bg: rgba(255, 255, 255, 0.6);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+    --glass-blur: blur(16px);
+}
+
+/* /src/css/components.css */
+.glass-panel {
+background: var(--glass-bg);
+backdrop-filter: var(--glass-blur);-webkit-backdrop-filter: var(--glass-blur);
+border: 1px solid var(--glass-border);
+box-shadow: var(--glass-shadow);
+border-radius: var(--border-radius);
+transition: var(--transition-smooth);
+}
+.glass-panel:hover {
+background: rgba(255, 255, 255, 0.08); 
+transform: translateY(-2px);
+}
+
+/* Dashboard Grid Layout */
+.dashboard-grid {
+display: grid;
+grid-template-columns: 250px 1fr;
+grid-template-rows: auto 1fr;
+gap: var(--space-lg);
+padding: var(--space-lg);
+height: 100vh;
+}
+
+@media (max-width: 768px) {
+.dashboard-grid {
+grid-template-columns: 1fr;
+padding: var(--space-md);
+}
+}

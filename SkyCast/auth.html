@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Aero | Authenticate</title>
+    <link rel="stylesheet" href="/src/css/variables.css">
+    <link rel="stylesheet" href="/src/css/base.css">
+    <link rel="stylesheet" href="/src/css/components.css">
+    <link rel="stylesheet" href="/src/css/auth.css">
+    <link rel="stylesheet" href="/src/css/animations.css">
+</head>
+<body class="auth-layout">
+    <!-- Animated atmospheric background -->
+    <div id="weather-bg-layer" aria-hidden="true" class="auth-bg"></div>
+
+    <main class="auth-container">
+        <!-- Main Auth Card -->
+        <div class="auth-card glass-panel animate-fade-in">
+            
+            <div class="auth-header">
+                <div class="brand-logo">
+                    <svg aria-hidden="true" width="40" height="40"><!-- Logo SVG --></svg>
+                </div>
+                <h1 id="auth-title">Welcome Back</h1>
+                <p class="text-muted" id="auth-subtitle">Sign in to sync your weather insights.</p>
+            </div>
+
+            <!-- LOGIN FORM -->
+            <form id="form-login" class="auth-form" novalidate>
+                <div class="input-group">
+                    <label for="login-email">Email Address</label>
+                    <input type="email" id="login-email" class="glass-input" placeholder="name@example.com" required autocomplete="email">
+                </div>
+                
+                <div class="input-group">
+                    <div class="label-row">
+                        <label for="login-password">Password</label>
+                        <button type="button" class="btn-text-small" id="link-forgot">Forgot Password?</button>
+                    </div>
+                    <input type="password" id="login-password" class="glass-input" placeholder="••••••••" required autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="btn-primary w-100 mt-sm">Sign In</button>
+
+                <div class="auth-divider">
+                    <span class="text-muted">or continue with</span>
+                </div>
+
+                <button type="button" class="btn-google glass-panel w-100" id="btn-google-login">
+                    <img src="/public/assets/google-icon.svg" alt="Google" width="20" height="20">
+                    Google
+                </button>
+
+                <p class="auth-footer text-center mt-md">
+                    Don't have an account? <button type="button" class="btn-text" id="link-register">Create one</button>
+                </p>
+            </form>
+
+            <!-- REGISTER FORM (Hidden by default) -->
+            <form id="form-register" class="auth-form hidden" novalidate>
+                <div class="input-group">
+                    <label for="reg-name">Display Name</label>
+                    <input type="text" id="reg-name" class="glass-input" placeholder="Sky Watcher" required autocomplete="name">
+                </div>
+
+                <div class="input-group">
+                    <label for="reg-email">Email Address</label>
+                    <input type="email" id="reg-email" class="glass-input" placeholder="name@example.com" required autocomplete="email">
+                </div>
+                
+                <div class="input-group">
+                    <label for="reg-password">Password</label>
+                    <input type="password" id="reg-password" class="glass-input" placeholder="At least 8 characters" required autocomplete="new-password">
+                </div>
+
+                <button type="submit" class="btn-primary w-100 mt-sm">Create Account</button>
+
+                <p class="auth-footer text-center mt-md">
+                    Already have an account? <button type="button" class="btn-text" id="link-login-from-reg">Sign In</button>
+                </p>
+            </form>
+
+            <!-- FORGOT PASSWORD FORM (Hidden by default) -->
+            <form id="form-forgot" class="auth-form hidden" novalidate>
+                <div class="input-group">
+                    <label for="reset-email">Email Address</label>
+                    <input type="email" id="reset-email" class="glass-input" placeholder="name@example.com" required>
+                </div>
+
+                <button type="submit" class="btn-primary w-100 mt-sm">Send Reset Link</button>
+
+                <p class="auth-footer text-center mt-md">
+                    Remembered your password? <button type="button" class="btn-text" id="link-login-from-forgot">Back to Sign In</button>
+                </p>
+            </form>
+
+        </div>
+    </main>
+</body>
+</html>

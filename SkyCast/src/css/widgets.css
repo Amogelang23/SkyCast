@@ -1,0 +1,196 @@
+/* --- General Widget Layout --- */
+.widget {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-md);
+    gap: var(--space-sm);
+}
+
+.widget-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: var(--space-sm);
+}
+
+.widget-title {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.widget-footer {
+    font-size: 0.85rem;
+    margin-top: auto;
+}
+
+/* --- Hourly Forecast Scroll --- */
+.hourly-scroll-container {
+    display: flex;
+    gap: var(--space-md);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    padding-bottom: var(--space-sm); 
+    
+    /* Hide scrollbar for clean UI */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.hourly-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+.hourly-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 60px;
+    padding: var(--space-sm);
+    border-radius: calc(var(--border-radius) / 2);
+    scroll-snap-align: start;
+    transition: var(--transition-smooth);
+}
+
+.hourly-item:hover, .hourly-item.active {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.hourly-item .time {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.hourly-item .temp {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.hourly-item .rain-chance {
+    font-size: 0.75rem;
+    color: #60a5fa;
+    margin-top: -4px;
+}
+
+.weather-icon-sm {
+    width: 32px;
+    height: 32px;
+    margin: 8px 0;
+}
+
+/* --- Air Quality SVG Ring --- */
+.aqi-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-width: 140px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.aqi-ring {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg); 
+}
+
+.ring-bg {
+    fill: none;
+    stroke: var(--glass-border);
+    stroke-width: 8;
+}
+
+.ring-progress {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Dynamic AQI Colors to be toggled by JS */
+.aqi-good { stroke: #4ade80; }
+.aqi-moderate { stroke: #facc15; }
+.aqi-unhealthy { stroke: #f87171; }
+.aqi-hazardous { stroke: #c084fc; }
+
+.aqi-info {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.aqi-value {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--text-main);
+}
+
+.aqi-status {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+/* --- UV Index Gradient Track --- */
+.uv-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-top: var(--space-sm);
+}
+
+.uv-header {
+    display: flex;
+    flex-direction: column;
+}
+
+.uv-value {
+    font-weight: 700;
+    line-height: 1;
+}
+
+.uv-status {
+    font-size: 1rem;
+    color: var(--text-muted);
+}
+
+.uv-track {
+    position: relative;
+    width: 100%;
+    height: 8px;
+    border-radius: 4px;
+    background: linear-gradient(to right, 
+        #4ade80 0%,  
+        #facc15 30%, 
+        #fb923c 60%, 
+        #f87171 80%, 
+        #c084fc 100%  
+    );
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.uv-indicator {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    background-color: #ffffff;
+    border: 3px solid #0f172a;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    transition: left 1s cubic-bezier(0.25, 0.8, 0.25, 1);
+}

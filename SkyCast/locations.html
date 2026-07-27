@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Locations | SkyCast</title>
+    <link rel="stylesheet" href="/src/css/variables.css">
+    <link rel="stylesheet" href="/src/css/base.css">
+    <link rel="stylesheet" href="/src/css/components.css">
+    <link rel="stylesheet" href="/src/css/animations.css">
+</head>
+<body class="app-layout">
+    <div id="weather-bg-layer" aria-hidden="true"></div>
+
+
+    <main class="locations-container padding-lg">
+        <header class="page-header">
+            <h1>Saved Locations</h1>
+            <button class="btn-primary glass-panel">+ Add City</button>
+        </header>
+
+        <div class="locations-grid" id="favorites-list">
+            
+            <article class="location-card glass-panel" data-expanded="false">
+                <div class="card-summary" role="button" aria-expanded="false" tabindex="0">
+                    <div class="city-info">
+                        <h2>Tokyo</h2>
+                        <span class="text-muted">Japan</span>
+                    </div>
+                    <div class="temp-info">
+                        <span class="icon-rainy"></span>
+                        <span class="text-step-2">18&deg;</span>
+                    </div>
+                </div>
+
+                <div class="card-details-wrapper">
+                    <div class="card-details-inner">
+                        <hr class="glass-divider">
+                        <div class="details-grid">
+                            <div class="detail-item">
+                                <span class="label text-muted">Humidity</span>
+                                <strong>72%</strong>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label text-muted">Wind</span>
+                                <strong>12 km/h</strong>
+                            </div>
+                            <div class="detail-item">
+                                <span class="label text-muted">AQI</span>
+                                <strong>45 (Good)</strong>
+                            </div>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn-icon" aria-label="Share"><span class="icon-share"></span></button>
+                            <button class="btn-icon danger" aria-label="Remove"><span class="icon-trash"></span></button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </main>
+    <script type="module" src="/src/js/ui/locations.js"></script>
+</body>
+</html>

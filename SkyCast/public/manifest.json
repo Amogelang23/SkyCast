@@ -1,0 +1,54 @@
+{
+  "name": "SkyCast",
+  "short_name": "SkyCast",
+  "description": "SkyCast Dashboard - A comprehensive dashboard for monitoring and managing your SkyCast services.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "lang": "en-US",
+  "categories": ["weather", "utilities"],
+  "icons": [
+    {
+      "src": "/public/assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/public/assets/icons/icon-192-maskable.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/public/assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/public/assets/icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Saved Locations",
+      "short_name": "Locations",
+      "description": "View weather in saved cities",
+      "url": "/locations.html",
+      "icons": [{ "src": "/public/assets/icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Preferences",
+      "short_name": "Profile",
+      "description": "Manage user preferences and settings",
+      "url": "/profile.html",
+      "icons": [{ "src": "/public/assets/icons/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

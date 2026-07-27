@@ -1,0 +1,67 @@
+<head>
+    <link rel="stylesheet" href="/src/css/variables.css">
+    <link rel="stylesheet" href="/src/css/base.css">
+    <link rel="stylesheet" href="/src/css/components.css">
+    <link rel="stylesheet" href="/src/css/animations.css">
+</head>
+
+<main class="profile-container padding-lg">
+    <header class="page-header">
+        <h1>Preferences</h1>
+    </header>
+
+    <div class="settings-grid">
+        <!-- Profile Section -->
+        <section class="settings-group glass-panel">
+            <h2>Account</h2>
+            <div class="profile-header">
+                <div class="avatar-upload">
+                    <img src="/public/assets/default-avatar.png" alt="Profile" id="user-avatar" class="avatar-img">
+                    <button class="btn-upload" aria-label="Upload new picture"><span class="icon-camera"></span></button>
+                </div>
+                <div class="input-group">
+                    <label for="display-name">Display Name</label>
+                    <input type="text" id="display-name" class="glass-input" value="Sky Watcher">
+                </div>
+            </div>
+        </section>
+
+        <!-- Preferences Section -->
+        <section class="settings-group glass-panel">
+            <h2>App Settings</h2>
+            
+            <div class="setting-row">
+                <div class="setting-info">
+                    <h3>Temperature Unit</h3>
+                    <p class="text-muted">Choose Celsius or Fahrenheit</p>
+                </div>
+                <div class="glass-toggle-group">
+                    <input type="radio" name="units" id="unit-c" value="metric" checked>
+                    <label for="unit-c">&deg;C</label>
+                    <input type="radio" name="units" id="unit-f" value="imperial">
+                    <label for="unit-f">&deg;F</label>
+                </div>
+            </div>
+
+            <hr class="glass-divider">
+
+            <div class="setting-row">
+                <div class="setting-info">
+                    <h3>Dark Mode</h3>
+                    <p class="text-muted">Adjust the visual theme</p>
+                </div>
+                <label class="switch">
+                    <input type="checkbox" id="theme-switch" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </section>
+
+        <!-- Danger Zone -->
+        <section class="settings-group glass-panel danger-zone">
+            <h2>Danger Zone</h2>
+            <button class="btn-outline-danger" id="btn-logout">Sign Out</button>
+            <button class="btn-text-danger mt-sm" id="btn-delete-account">Delete Account</button>
+        </section>
+    </div>
+</main>
